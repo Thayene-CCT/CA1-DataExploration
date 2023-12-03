@@ -23,9 +23,21 @@ skimmed_df <- skim(covid_df)
 # Printing the skim summary - Muhammad's Tutorial
 print(skimmed_df)
 
+#question b
 glimpse (covid_df)
 summary (covid_df)
+
+numeric_columns <- covid_df[,c(4,6,8,9)]
+
+#Impute NA
+
+cleaned_data <- na.omit(numeric_columns)
 
 preprocess_df <- preProcess(covid_df[,c(4,6,8,9)], method = c('center', 'scale'))
 data <- predict(preprocess_df, covid_df[,c(4,6,8,9)])
 summary (data)
+
+covid_df.pca <- prcomp(cleaned_data, center = TRUE, scale. = TRUE)
+summary (covid_df.pca)
+
+
