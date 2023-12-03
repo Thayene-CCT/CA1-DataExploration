@@ -1,12 +1,15 @@
 #Based on Tutorial 5
 install.packages(c("tidyverse","dummy","caTools","conflicted"))
 install.packages("skimr")
+install.packages("caret")
+
 
 library(conflicted)
 library(tidyverse)
 library(dummy)
 library(caTools)
 library(skimr)
+library(caret)
 
 covid_df <- read_csv(file="covid_data_2023.csv")
 #Sourced from: https://teacherscollege.screenstepslive.com/a/1127011-display-your-data-in-r-studio
@@ -22,3 +25,7 @@ print(skimmed_df)
 
 glimpse (covid_df)
 summary (covid_df)
+
+preprocess_df <- preProcess(covid_df[,c(4,6,8,9)], method = c('center', 'scale'))
+data <- predict(preprocess_df, covid_df[,c(4,6,8,9)])
+summary (data)
