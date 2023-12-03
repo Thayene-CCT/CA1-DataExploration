@@ -30,7 +30,7 @@ summary (covid_df)
 numeric_columns <- covid_df[,c(4,6,8,9)]
 
 #Impute NA
-
+#Source: https://www.tutorialspoint.com/how-to-remove-all-rows-having-na-in-r
 cleaned_data <- na.omit(numeric_columns)
 
 preprocess_df <- preProcess(covid_df[,c(4,6,8,9)], method = c('center', 'scale'))
