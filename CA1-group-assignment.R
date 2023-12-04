@@ -1,3 +1,8 @@
+#Students:
+
+#Thayene Lorens: 2020293
+#Mayara Lorens: 2020292
+
 #Installing all the necessary packages for this project.
 install.packages(c("tidyverse","dummy","caTools","conflicted"))
 install.packages("skimr")
@@ -94,6 +99,7 @@ summary (covid_df.pca)
 head(covid_df)
 
 #dummy variables
+#One indicator for deaths and another one for cases
 covid_df$Indicator_Deaths<- ifelse(covid_df$indicator == 'cases', 1, 0)
 covid_df$Indicator_Cases <- ifelse(covid_df$indicator == 'deaths', 1, 0)
 
