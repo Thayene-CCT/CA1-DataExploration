@@ -84,4 +84,12 @@ ggplot(covid_df, aes(x = indicator, y = rate_14_day, color = country)) +
  covid_df.pca <- prcomp(cleaned_data, center = TRUE, scale. = TRUE)
 summary (covid_df.pca)
 
+#Task F
 
+head(covid_df)
+
+#dummy variables
+covid_df$Indicator_Deaths<- ifelse(covid_df$indicator == 'cases', 1, 0)
+covid_df$Indicator_Cases <- ifelse(covid_df$indicator == 'deaths', 1, 0)
+
+view(covid_df)
