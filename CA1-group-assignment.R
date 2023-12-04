@@ -105,3 +105,18 @@ covid_df$Indicator_Cases <- ifelse(covid_df$indicator == 'deaths', 1, 0)
 
 view(covid_df)
 
+# Task E
+
+#draft
+
+#Tutorial 4
+
+#
+# summarize dataset
+
+print(summary(covid_df))
+
+
+
+
+
