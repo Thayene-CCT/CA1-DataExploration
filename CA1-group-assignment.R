@@ -23,6 +23,13 @@ covid_df <- read_csv(file="covid_data_2023.csv")
 #Display the data frame using the 'View' function.
 View (covid_df)
 
+#Dropping the note column because it is completely empty.
+#Source: https://sparkbyexamples.com/r-programming/remove-column-in-r/
+covid_df <- covid_df[,-11]
+View (covid_df)
+
+str(covid_df)
+
 #Source: https://uc-r.github.io/missing_values
 #Computing the total missing values in each column of our data frame.
 colSums(is.na(covid_df))
