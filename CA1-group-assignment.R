@@ -27,6 +27,7 @@ View (covid_df)
 #Computing the total missing values in each column of our data frame.
 colSums(is.na(covid_df))
 
+#--------------------------Question A---------------------------------
 
 #Reference: Muhammad's Sample Tutorial.
 #Skimming the data set. 
@@ -40,6 +41,35 @@ numeric_columns <- covid_df[,c(4,6,8,9)]
 #Imputing NA by using na.omit
 #Source: https://www.tutorialspoint.com/how-to-remove-all-rows-having-na-in-r
 cleaned_data <- na.omit(numeric_columns)
+
+#Categorical Plots: Bar chart
+
+ggplot(covid_df) + geom_bar(aes(y = country), fill = 'lightgreen')
+
+ggplot(covid_df) + geom_bar(aes(y = country_code), fill = 'lightyellow')
+
+ggplot(covid_df) + geom_bar(aes(x = continent), fill = 'lightblue')
+
+ggplot(covid_df) + geom_bar(aes(x = indicator), fill = 'lightcoral')
+
+ggplot(covid_df) + geom_bar(aes(x = source), fill = 'lightpink')
+
+
+#Continuous data: scatter plot
+
+ggplot(covid_df) + geom_histogram(aes(x = rate_14_day), fill = 'lightcoral', bins = 30)
+
+#Discrete data: Histogram plot
+
+ggplot(covid_df) + geom_histogram(aes(x = weekly_count), fill = 'lightgreen', bins = 30)
+
+ggplot(covid_df) + geom_histogram(aes(x = cumulative_count), fill = 'lightblue', bins = 30)
+
+#Filtering column and converting date using as.Date function
+#Source: https://stackoverflow.com/questions/21556772/filtering-a-data-frame-by-date-in-r
+covid_df$year_week <- as.Date(covid_df$year_week)
+
+ggplot(covid_df) + geom_bar(aes(x = year_week), fill = 'lightpink')
 
 #--------------------------Question B---------------------------------
 
