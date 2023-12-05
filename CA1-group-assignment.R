@@ -160,14 +160,19 @@ ggplot(data = covid_df, aes(x = indicator, y = rate_14_day, fill = country_code)
 #attempt 2
 
 # Data Exploration
-# Let's check the structure of the data
-str(covid_df)
 
 # Summary statistics
-summary(covid_df)
+#descriptive analysis
+ncol(covid_df) # number of cols
+nrow(covid_df) # number of rows
+dim(covid_df)# number of cols and rows
+str(covid_df)# it specifies whether it is numerical, factor, etc
+summary(covid_df)#summary of dataset, it provides mean, median and other pertinent info
 
 
 #stacked bar chart
+
+#Stacked bars to evaluate the amount of cases and deaths for each country according to the 14 days rate.
 ggplot(data = filtered_data, aes(x = country_code, y = rate_14_day, fill = indicator)) +
   geom_bar(stat = "identity") +
   labs(title = "Cases and Deaths in 14 Days by Country Code",
