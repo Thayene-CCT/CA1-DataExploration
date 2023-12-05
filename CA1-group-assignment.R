@@ -131,16 +131,6 @@ ggplot(covid_df, aes(x = year_week, y = country, fill = rate_14_day)) +
  covid_df.pca <- prcomp(cleaned_data, center = TRUE, scale. = TRUE)
 summary (covid_df.pca)
 
-#--------------------------Question F---------------------------------
-
-head(covid_df)
-
-#dummy variables
-#One indicator for deaths and another one for cases
-covid_df$Indicator_Deaths<- ifelse(covid_df$indicator == 'cases', 1, 0)
-covid_df$Indicator_Cases <- ifelse(covid_df$indicator == 'deaths', 1, 0)
-
-view(covid_df)
 
 #--------------------------Question E---------------------------------
 
@@ -185,4 +175,15 @@ ggplot(data = covid_df, aes(x = year_week, y = weekly_count, color = indicator))
        color = "Indicator") +
   theme_minimal()
 
+
+#--------------------------Question F---------------------------------
+
+head(covid_df)
+
+#dummy variables
+#One indicator for deaths and another one for cases
+covid_df$Indicator_Deaths<- ifelse(covid_df$indicator == 'cases', 1, 0)
+covid_df$Indicator_Cases <- ifelse(covid_df$indicator == 'deaths', 1, 0)
+
+view(covid_df)
 
