@@ -128,6 +128,9 @@ ggplot(covid_df, aes(x = year_week, y = country, fill = rate_14_day)) +
        y = "Country")
 
 
+ covid_df.pca <- prcomp(cleaned_data, center = TRUE, scale. = TRUE)
+summary (covid_df.pca)
+
 #--------------------------Question F---------------------------------
 
 head(covid_df)
@@ -139,27 +142,14 @@ covid_df$Indicator_Cases <- ifelse(covid_df$indicator == 'deaths', 1, 0)
 
 view(covid_df)
 
-#--------------------------Question G---------------------------------
-
-covid_df.pca <- prcomp(cleaned_data, center = TRUE, scale. = TRUE)
-summary (covid_df.pca)
-
 #--------------------------Question E---------------------------------
 
-#draft
+
 
 # summarize dataset
 
 print(summary(covid_df))
 
-
-
-ggplot(data = covid_df, aes(x = indicator, y = rate_14_day, fill = country_code)) +
-  geom_bar(stat = "identity") +
-  labs(x = "Indicator", y = "14 days Rate", fill = "Country Code") +
-  ggtitle("Case numbers and deaths by country")
-
-#attempt 2
 
 # Data Exploration
 
@@ -174,6 +164,9 @@ summary(covid_df)#summary of dataset, it provides mean, median and other pertine
 
 #stacked bar chart
 
+#Question: how do the 14-day rates of cases and deaths compare across different countries?
+#Are there countries with significantly higher or lower rates compared to others?
+
 #Stacked bars to evaluate the amount of cases and deaths for each country according to the 14 days rate.
 ggplot(data = filtered_data, aes(x = country_code, y = rate_14_day, fill = indicator)) +
   geom_bar(stat = "identity") +
@@ -181,6 +174,15 @@ ggplot(data = filtered_data, aes(x = country_code, y = rate_14_day, fill = indic
        x = "Country Code",
        y = "Rate_14_day") +
   
+  theme_minimal()
+
+#checking weeks of the year and week count - cases and deaths
+ggplot(data = covid_df, aes(x = year_week, y = weekly_count, color = indicator)) +
+  geom_line() +
+  labs(title = "Weekly Counts of Cases and Deaths Over Time",
+       x = "Year",
+       y = "Weekly Count",
+       color = "Indicator") +
   theme_minimal()
 
 
