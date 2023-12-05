@@ -142,18 +142,43 @@ covid_df$Indicator_Cases <- ifelse(covid_df$indicator == 'deaths', 1, 0)
 
 view(covid_df)
 
-# Task E
+#--------------------------Question E---------------------------------
 
 #draft
 
-#Tutorial 4
-
-#
 # summarize dataset
 
 print(summary(covid_df))
 
 
+library(ggplot2)
+
+# Replace 'cases' with the actual indicator you want to visualize
+# Replace 'country' with the actual variable you want to use on the x-axis
+
+# Basic ggplot structure
+ggplot(data = covid_df) +
+  
+  #(bar plot)
+  #extracted from tutorial 4
+  geom_bar(
+    aes(x = factor(country), fill = factor(indicator)),  # 'cases' is assumed as the indicator
+    position = "stack",                              # Adjust the position as needed
+    stat = "count"                                   # Use count as the statistic
+  ) +
+  
+  # Customize x-axis and y-axis labels
+  scale_x_discrete("Country") +
+  scale_y_continuous("Weekly Count") +
+  
+  # Customize legend
+  guides(fill = guide_legend(title = "Indicator")) +
+  
+  # Specify manual color values for the fill
+  scale_fill_manual(values = c("blue", "red")) +
+  
+  # Add additional customization as needed
+  theme_minimal()  # Change the theme as per your preference
 
 
 
