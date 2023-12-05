@@ -157,5 +157,23 @@ ggplot(data = covid_df, aes(x = indicator, y = rate_14_day, fill = country_code)
   labs(x = "Indicator", y = "14 days Rate", fill = "Country Code") +
   ggtitle("Case numbers and deaths by country")
 
+#attempt 2
+
+# Data Exploration
+# Let's check the structure of the data
+str(covid_df)
+
+# Summary statistics
+summary(covid_df)
+
+
+#stacked bar chart
+ggplot(data = filtered_data, aes(x = country_code, y = rate_14_day, fill = indicator)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Cases and Deaths in 14 Days by Country Code",
+       x = "Country Code",
+       y = "Rate_14_day") +
+  
+  theme_minimal()
 
 
