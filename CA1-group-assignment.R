@@ -128,10 +128,6 @@ ggplot(covid_df, aes(x = year_week, y = country, fill = rate_14_day)) +
        y = "Country")
 
 
- covid_df.pca <- prcomp(cleaned_data, center = TRUE, scale. = TRUE)
-summary (covid_df.pca)
-
-
 #--------------------------Question E---------------------------------
 
 
@@ -187,3 +183,7 @@ covid_df$Indicator_Cases <- ifelse(covid_df$indicator == 'deaths', 1, 0)
 
 view(covid_df)
 
+#--------------------------Question G---------------------------------
+
+covid_df.pca <- prcomp(cleaned_data, center = TRUE, scale. = TRUE)
+summary (covid_df.pca)
