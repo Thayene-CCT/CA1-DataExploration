@@ -121,11 +121,8 @@ ggplot(covid_df, aes(x = rate_14_day, y = country)) +
   labs(title = "14 days rate", x = "rate_14_day", y = "country")
 
 #Heatmap
-#Source: https://r-charts.com/correlation/heat-map-ggplot2/?utm_content=cmp-true
-ggplot(covid_df, aes(x = year_week, y = country, fill = rate_14_day)) +
-  geom_tile(color ="orange") +   scale_fill_gradient2(low = "white",
-                                                     mid = "purple",
-                                                     high = "red")+
+ggplot(covid_df, aes(x = rate_14_day, y = country, fill = rate_14_day)) +
+  geom_tile(color ="orange") +
   labs(title = "Heatmap of 14-Day Rates by Country and Week",
        x = "Year-Week",
        y = "Country")
