@@ -100,6 +100,7 @@ summary (data)
 #Reference: Tutorial 5 & Sample Tutorial by Muhammad. 
 
 #Scatter plot: based on sample tutorial
+#Blue points are used with a minimal size of 1.
 ggplot(covid_df, aes(x=rate_14_day, y= country
 )) + geom_point(size=1, color="Blue")
 
@@ -108,25 +109,26 @@ covid_df %>%
   geom_point(
     mapping = aes(x = rate_14_day, y = country),
     size = 1,
-    color = "blue"
+    color = "violet"
   ) +
   labs(title = "14 days rate", x = "rate_14_day", y = "country") +
   theme_minimal() + 
   theme(text = element_text(size = 14))
 
 #Line Plot
- 
 ggplot(covid_df, aes(x = rate_14_day, y = country)) +
   geom_line(color = "red") +
   labs(title = "14 days rate", x = "rate_14_day", y = "country")
 
 #Heatmap
+#Source: https://r-charts.com/correlation/heat-map-ggplot2/?utm_content=cmp-true
 ggplot(covid_df, aes(x = year_week, y = country, fill = rate_14_day)) +
-  geom_tile() +
+  geom_tile(color ="orange") +   scale_fill_gradient2(low = "white",
+                                                     mid = "purple",
+                                                     high = "red")+
   labs(title = "Heatmap of 14-Day Rates by Country and Week",
        x = "Year-Week",
        y = "Country")
-
 
 #--------------------------Question E---------------------------------
 
