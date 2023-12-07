@@ -176,7 +176,6 @@ ggplot(data = covid_df, aes(x = country_code, y = population)) +
   theme_minimal()
 
 
-
 #--------------------------Question F---------------------------------
 
 head(covid_df)
