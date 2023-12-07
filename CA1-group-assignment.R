@@ -176,6 +176,23 @@ ggplot(data = covid_df, aes(x = year_week, y = weekly_count, color = indicator))
   theme_minimal()
 
 
+ggplot(data = covid_df, aes(x = country_code, y = population, fill = indicator)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Population by Country",
+       x = "Country",
+       y = "Population") +
+  theme_minimal()
+
+#checking population number for EDA
+ggplot(data = covid_df, aes(x = country_code, y = population)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  labs(title = "Population by Country",
+       x = "Country Code",
+       y = "Population") +
+  theme_minimal()
+
+
+
 #--------------------------Question F---------------------------------
 
 head(covid_df)
