@@ -48,6 +48,7 @@ numeric_columns <- covid_df[,c(4,6,8,9)]
 #Imputing NA by using na.omit
 #Source: https://www.tutorialspoint.com/how-to-remove-all-rows-having-na-in-r
 cleaned_data <- na.omit(numeric_columns)
+view(cleaned_data)
 
 #Categorical Plots: Bar chart
 
@@ -99,42 +100,32 @@ summary (data)
 
 #Reference: Tutorial 5 & Sample Tutorial by Muhammad. 
 
-#Scatter plot: based on sample tutorial
-ggplot(covid_df, aes(x=rate_14_day, y= country
-)) + geom_point(size=1, color="Blue")
-
+#Scatter plot: based on Tutorial 5 - country vs rate_14_day
 covid_df %>%
   ggplot() +
   geom_point(
     mapping = aes(x = rate_14_day, y = country),
     size = 1,
-    color = "blue"
+    color = "violet"
   ) +
   labs(title = "14 days rate", x = "rate_14_day", y = "country") +
   theme_minimal() + 
   theme(text = element_text(size = 14))
 
-#Line Plot
- 
+
+#Line Plot: country vs rate_14_day
 ggplot(covid_df, aes(x = rate_14_day, y = country)) +
   geom_line(color = "red") +
   labs(title = "14 days rate", x = "rate_14_day", y = "country")
 
+
 #Heatmap
-ggplot(covid_df, aes(x = year_week, y = country, fill = rate_14_day)) +
-  geom_tile() +
+ggplot(covid_df, aes(x = rate_14_day, y = country, fill = rate_14_day)) +
+  geom_tile(color ="orange") +
   labs(title = "Heatmap of 14-Day Rates by Country and Week",
        x = "Year-Week",
        y = "Country")
-
-
- covid_df.pca <- prcomp(cleaned_data, center = TRUE, scale. = TRUE)
-summary (covid_df.pca)
-
-
 #--------------------------Question E---------------------------------
-
-
 
 # summarize dataset
 
@@ -143,7 +134,7 @@ print(summary(covid_df))
 
 # Data Exploration
 
-# Summary statistics
+#Summary statistics
 #descriptive analysis
 ncol(covid_df) # number of cols
 nrow(covid_df) # number of rows
@@ -203,4 +194,10 @@ covid_df$Indicator_Deaths<- ifelse(covid_df$indicator == 'cases', 1, 0)
 covid_df$Indicator_Cases <- ifelse(covid_df$indicator == 'deaths', 1, 0)
 
 view(covid_df)
+
+#--------------------------Question G---------------------------------
+
+#Reference: Muhammad's Tutorial
+covid_df.pca <- prcomp(cleaned_data, center = TRUE, scale. = TRUE)
+summary (covid_df.pca)
 
