@@ -17,24 +17,25 @@ library(skimr)
 library(caret)
 library(ggplot2)
 
-#Reading the covid_df dataset.
+#Reading the covid_data_2023 dataset.
 covid_df <- read_csv(file="covid_data_2023.csv")
 #Function sourced from: https://teacherscollege.screenstepslive.com/a/1127011-display-your-data-in-r-studio
 #Display the data frame using the 'View' function.
 View (covid_df)
 
-#Dropping the note column because it is completely empty.
+#Dropping the note column because it is completely empty. Deleting it by its index.
 #Source: https://sparkbyexamples.com/r-programming/remove-column-in-r/
 covid_df <- covid_df[,-11]
 View (covid_df)
 
+#Displaying the structure of our data frame.
 str(covid_df)
+
+#--------------------------Question A---------------------------------
 
 #Source: https://uc-r.github.io/missing_values
 #Computing the total missing values in each column of our data frame.
 colSums(is.na(covid_df))
-
-#--------------------------Question A---------------------------------
 
 #Reference: Muhammad's Sample Tutorial.
 #Skimming the data set. 
@@ -63,11 +64,11 @@ ggplot(covid_df) + geom_bar(aes(x = indicator), fill = 'lightcoral')
 ggplot(covid_df) + geom_bar(aes(x = source), fill = 'lightpink')
 
 
-#Continuous data: scatter plot
+#Continuous data: Histogram
 
 ggplot(covid_df) + geom_histogram(aes(x = rate_14_day), fill = 'lightcoral', bins = 30)
 
-#Discrete data: Histogram plot
+#Discrete data: Histogram 
 
 ggplot(covid_df) + geom_histogram(aes(x = weekly_count), fill = 'lightgreen', bins = 30)
 
@@ -77,6 +78,7 @@ ggplot(covid_df) + geom_histogram(aes(x = cumulative_count), fill = 'lightblue',
 #Source: https://stackoverflow.com/questions/21556772/filtering-a-data-frame-by-date-in-r
 covid_df$year_week <- as.Date(covid_df$year_week)
 
+#Bar Plot
 ggplot(covid_df) + geom_bar(aes(x = year_week), fill = 'lightpink')
 
 #--------------------------Question B---------------------------------
@@ -91,10 +93,9 @@ summary (covid_df)
 
 #Use preProcess function from caret package to preprocess selected numeric columns (4, 6, 8, 9) in covid_df.
 preprocess_df <- preProcess(covid_df[,c(4,6,8,9)], method = c('center', 'scale'))
-#Using the predict function to apply the preprocessing transformations to the selected columns in covid_df
+#Using the predict function to apply the preprocessing transformations to the selected columns in covid_df.
 data <- predict(preprocess_df, covid_df[,c(4,6,8,9)])
 summary (data)
-
 
 #--------------------------Question D---------------------------------
 
@@ -181,6 +182,7 @@ view(covid_df)
 #--------------------------Question G---------------------------------
 
 #Reference: Muhammad's Tutorial
+#Without cleaned_data, this function gives an error, therefore no Na values.
 covid_df.pca <- prcomp(cleaned_data, center = TRUE, scale. = TRUE)
 summary (covid_df.pca)
 
